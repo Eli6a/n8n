@@ -18,6 +18,7 @@ COPY packages/design-system/ ./packages/design-system/
 COPY packages/editor-ui/ ./packages/editor-ui/
 COPY packages/nodes-base/ ./packages/nodes-base/
 COPY packages/workflow/ ./packages/workflow/
+COPY lds-files lds-files
 RUN rm -rf node_modules packages/*/node_modules packages/*/dist
 
 RUN npm config set legacy-peer-deps true
