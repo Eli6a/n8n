@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="52px"
+   height="52px"
+   viewBox="0 0 52 52"
+   version="1.1"
+   id="svg875"
+   sodipodi:docname="database-icon-little.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata879">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Data</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview877"
+     showgrid="false"
+     inkscape:zoom="11.558476"
+     inkscape:cx="28.407312"
+     inkscape:cy="23.846089"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg875" />
+  <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title857">Data</title>
+  <desc
+     id="desc859">Created with Sketch.</desc>
+  <defs
+     id="defs861" />
+  <g
+     id="Page-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="matrix(0.7794675,0,0,0.7794675,6.2733015,5.820362)">
+    <g
+       id="Data"
+       fill="#000000">
+      <path
+         d="M 25.8,13.5 C 23.2,13.5 0.4,13.3 0.4,7 0.4,0.7 23.2,0.5 25.8,0.5 c 2.6,0 25.4,0.2 25.4,6.5 0,6.3 -22.8,6.5 -25.4,6.5 z M 3.5,7 c 1.2,1.3 9.2,3.5 22.3,3.5 C 38.9,10.5 47,8.3 48.1,7 46.9,5.7 38.9,3.5 25.8,3.5 12.7,3.5 4.6,5.6 3.5,7 Z"
+         id="Shape" />
+      <rect
+         id="Rectangle-path"
+         x="48.200001"
+         y="7"
+         width="3"
+         height="37.400002" />
+      <rect
+         id="rect865"
+         x="0.40000001"
+         y="7"
+         width="3"
+         height="37.400002" />
+      <path
+         d="m 25.8,26.6 c -6,0 -25.4,-0.5 -25.4,-7.3 h 3 c 0,1.8 8.5,4.3 22.4,4.3 13.9,0 22.4,-2.5 22.4,-4.3 h 3 c 0,6.8 -19.5,7.3 -25.4,7.3 z"
+         id="path867" />
+      <path
+         d="m 25.8,39.1 c -6,0 -25.4,-0.5 -25.4,-7.3 h 3 c 0,1.8 8.5,4.3 22.4,4.3 13.9,0 22.4,-2.5 22.4,-4.3 h 3 c 0,6.7 -19.5,7.3 -25.4,7.3 z"
+         id="path869" />
+      <path
+         d="M 25.8,51.5 C 19.8,51.5 0.4,51 0.4,44.2 h 3 c 0,1.8 8.5,4.3 22.4,4.3 13.9,0 22.4,-2.5 22.4,-4.3 h 3 c 0,6.7 -19.4,7.3 -25.4,7.3 z"
+         id="path871" />
+    </g>
+  </g>
+</svg>
