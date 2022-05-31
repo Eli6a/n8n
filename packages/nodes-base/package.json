@@ -493,7 +493,7 @@
       "dist/nodes/Keap/KeapTrigger.node.js",
       "dist/nodes/Kitemaker/Kitemaker.node.js",
       "dist/nodes/KoBoToolbox/KoBoToolbox.node.js",
-      "dist/nodes/KoBoToolbox/KoBoToolboxTrigger.node.js",,
+      "dist/nodes/KoBoToolbox/KoBoToolboxTrigger.node.js",
       "dist/nodes/LdsMicroMeasure/LdsMicroMeasure.node.js",
       "dist/nodes/LdsMicroMeasureAggregation/LdsMicroMeasureAggregation.node.js",
       "dist/nodes/LdsSimilarity/LdsSimilarity.node.js",
