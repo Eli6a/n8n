@@ -67,11 +67,11 @@
           "string": [
             {
               "name": "inputFile",
-              "value": "C:\\Users\\Aurelie\\Documents\\Cours\\L2\\Stage\\csv-files\\input.csv"
+              "value": "lds-files/input.csv"
             },
             {
               "name": "outputFile",
-              "value": "C:\\Users\\Aurelie\\Documents\\Cours\\L2\\Stage\\csv-files\\output.csv"
+              "value": 'lds-files/output.csv"
             }
           ]
         },
