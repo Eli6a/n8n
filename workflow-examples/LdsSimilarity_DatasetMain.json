@@ -1,0 +1,164 @@
+{
+  "name": "LdsSimilarity-DatasetMain",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "inputID",
+              "value": "1wPNa9YpZzo1F1dCbSLKzlGLJG1K-i4PNjOlJ3Wntt6s"
+            },
+            {
+              "name": "outputID",
+              "value": "1XbIuLDdk5dFnQwo8Eytz2gDPEwJdB0L6rhfZaeq30cA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Input Output Files IDs",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "={{$node[\"Set Input Output Files IDs\"].parameter[\"values\"][\"string\"][1][\"value\"]}}",
+        "range": "A:C",
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        }
+      },
+      "name": "Google Sheets Output File",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        310
+      ],
+      "credentials": {
+        "googleApi": "acces google cloud"
+      }
+    },
+    {
+      "parameters": {
+        "sheetId": "={{$node[\"Set Input Output Files IDs\"].parameter[\"values\"][\"string\"][0][\"value\"]}}",
+        "range": "A:C",
+        "options": {}
+      },
+      "name": "Google Sheets Input File",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        740,
+        390
+      ],
+      "credentials": {
+        "googleApi": "acces google cloud"
+      }
+    },
+    {
+      "parameters": {},
+      "name": "LdsDataset",
+      "type": "n8n-nodes-base.ldsDataset",
+      "typeVersion": 1,
+      "position": [
+        740,
+        210
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Bus",
+        "url2": "Car"
+      },
+      "name": "LdsSimilarity",
+      "type": "n8n-nodes-base.ldsSimilarity",
+      "typeVersion": 1,
+      "position": [
+        990,
+        310
+      ]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set Input Output Files IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input Output Files IDs": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Input File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsDataset": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Input File": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "LdsSimilarity": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Output File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "5"
+}

@@ -1,0 +1,171 @@
+{
+  "name": "LdsMicroMeasure",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        230,
+        400
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "LdsDataset",
+      "type": "n8n-nodes-base.ldsDataset",
+      "typeVersion": 1,
+      "position": [
+        540,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Paris",
+        "url2": "Madrid",
+        "propertyName": "populationMetro",
+        "measure_atomic": "numeric"
+      },
+      "name": "LdsMicroMeasure",
+      "type": "n8n-nodes-base.ldsMicroMeasure",
+      "typeVersion": 1,
+      "position": [
+        830,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Paris",
+        "url2": "Madrid",
+        "propertyName": "populationUrban",
+        "measure_atomic": "numeric"
+      },
+      "name": "LdsMicroMeasure1",
+      "type": "n8n-nodes-base.ldsMicroMeasure",
+      "typeVersion": 1,
+      "position": [
+        1070,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Paris",
+        "url2": "Madrid",
+        "propertyName": "abstract",
+        "measure_atomic": "normalizedLevenshtein"
+      },
+      "name": "LdsMicroMeasure2",
+      "type": "n8n-nodes-base.ldsMicroMeasure",
+      "typeVersion": 1,
+      "position": [
+        610,
+        510
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "LdsDataset1",
+      "type": "n8n-nodes-base.ldsDataset",
+      "typeVersion": 1,
+      "position": [
+        410,
+        510
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "LdsMicroMeasureAggregation",
+      "type": "n8n-nodes-base.ldsMicroMeasureAggregation",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        380
+      ]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "LdsDataset1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsDataset": {
+      "main": [
+        [
+          {
+            "node": "LdsMicroMeasure",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsMicroMeasure1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsMicroMeasure": {
+      "main": [
+        [
+          {
+            "node": "LdsMicroMeasure1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "LdsMicroMeasure1": {
+      "main": [
+        [
+          {
+            "node": "LdsMicroMeasureAggregation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsMicroMeasure2": {
+      "main": [
+        [
+          {
+            "node": "LdsMicroMeasure",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "LdsDataset1": {
+      "main": [
+        [
+          {
+            "node": "LdsMicroMeasure2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "6"
+}

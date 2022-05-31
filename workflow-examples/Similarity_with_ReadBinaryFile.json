@@ -1,0 +1,199 @@
+{
+  "name": "Similarity with ReadBinaryFile",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        230,
+        290
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        800,
+        290
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "filePath": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][0][\"value\"]}}"
+      },
+      "name": "Read Binary File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "position": [
+        600,
+        290
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "csv",
+        "options": {}
+      },
+      "name": "Spreadsheet File1",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        230
+      ]
+    },
+    {
+      "parameters": {
+        "fileName": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][1][\"value\"]}}"
+      },
+      "name": "Write Binary File",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        230
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "inputFile",
+              "value": "C:\\Users\\Aurelie\\Documents\\Cours\\L2\\Stage\\csv-files\\input.csv"
+            },
+            {
+              "name": "outputFile",
+              "value": "C:\\Users\\Aurelie\\Documents\\Cours\\L2\\Stage\\csv-files\\output.csv"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Input Output Files Paths",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        430,
+        290
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "LdsDataset",
+      "type": "n8n-nodes-base.ldsDataset",
+      "typeVersion": 1,
+      "position": [
+        600,
+        90
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Bus",
+        "url2": "Car"
+      },
+      "name": "LdsSimilarity",
+      "type": "n8n-nodes-base.ldsSimilarity",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        230
+      ]
+    }
+  ],
+  "connections": {
+    "Read Binary File": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set Input Output Files Paths",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File1": {
+      "main": [
+        [
+          {
+            "node": "Write Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input Output Files Paths": {
+      "main": [
+        [
+          {
+            "node": "Read Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsDataset": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "LdsSimilarity": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "3"
+}
