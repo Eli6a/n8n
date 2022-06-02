@@ -1,0 +1,36 @@
+version: '3'
+services:
+    wysiwym_eureka:
+        image: vykthor/wysiwym_eureka
+        
+    wysiwym_config_server:
+        depends_on:
+            - wysiwym_eureka
+        image: vykthor/wysiwym_config_server
+        
+    wysiwym_api:
+        depends_on:
+            - wysiwym_config_server
+        image: vykthor/wysiwym_api
+        
+    wysiwym_lds_service:
+        depends_on:
+            - wysiwym_api
+        image: vykthor/wysiwym_lds_service
+        ports:
+            - "9001:9001"
+        
+    wysiwym_measures_service:
+        depends_on:
+            - wysiwym_api
+        image: vykthor/wysiwym_measures_service
+        ports:
+            - "9002:9002"
+            
+    n8n_custom:
+        depends_on:
+            - wysiwym_lds_service
+            - wysiwym_measures_service
+        image: n8n-custom
+        ports:
+            - "5678:5678"
