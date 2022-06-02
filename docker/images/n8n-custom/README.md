@@ -3,7 +3,7 @@
 Lds (Linked Data Similarity) is a Java Library that make similarity calculation between concepts.
 We use n8n to facilitate it use and exploit it result.
 
-# Lds usage with custom nodes
+# Lds usage with custom nodes and docker
 
 ## Before building the docker image
 
