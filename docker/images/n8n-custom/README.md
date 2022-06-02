@@ -5,6 +5,8 @@ We use n8n to facilitate it use and exploit it result.
 
 # Lds usage with custom nodes and docker
 
+The command should be used on a Linux terminal
+
 ## Before building the docker image
 
 To use Binary File nodes, you must put the writting permission to [output.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/output.csv), located in the folder lds-files, to be able to use it with the Write Binary File node using this command in the n8n root folder :
