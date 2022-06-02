@@ -23,7 +23,7 @@ docker build -t n8n-custom -f docker/images/n8n-custom/Dockerfile .
 
 Execute the following in the n8n root folder:
 ```bash
-sudo docker run -d -p 5678:5678 n8n-custom
+docker run -d -p 5678:5678 n8n-custom
 ```
 You can then access n8n by opening : [http://localhost:5678](http://localhost:5678)
 
@@ -59,3 +59,17 @@ Click on "Execute the workflow"
 
 After the execution, your output file will be update with the name of the concepts and the score of similarity. 
 If the workflow is execute again, a new row will appear.
+
+## Close n8n
+
+Execute the command :
+```bash
+docker ps
+```
+
+Copy the Container ID of n8n-custom.
+
+Execute the command :
+```bash
+docker stop [ContainerID]
+``
