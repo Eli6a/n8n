@@ -48,7 +48,7 @@ You can copy the contents of the [LdsSimilarity_DatasetMain.json](https://github
 As we need to yse credentials, follow this [tutorial](https://docs.n8n.io/integrations/credentials/google/) te create the credentials. Service Account is enough for this example.
 When it's done, create two Google Sheets files, and copy their IDs in the node Set Input Output Files IDs.
 The input file can be empty, but the output one must have, at least, the colomns : "resource1", "resource2" and "score". 
-Their IDs can be find on your file's url : ht<span>tps//docs.google.</span>com/spreadsheets/d/<span>[the_ID]/edit#gid=0</span>
+Their IDs can be find on your file's url : ht<span>tps//docs.google.</span>com/spreadsheets/d/<span>[the-ID]/edit#gid=0</span>
 Click on "Back to canvas".
 
 Double-click on the LsdSimilaryty node. In "Type of measure", click on the gear, then "Add Expression". I will show "Resim" in "Expression" and "Result". You can click on the cross.
