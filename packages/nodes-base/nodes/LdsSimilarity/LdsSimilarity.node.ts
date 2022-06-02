@@ -239,7 +239,7 @@ export class LdsSimilarity implements INodeType {
 					},
 					method: 'POST',
 					body: {},
-					uri: 'https://wysiwym-api.herokuapp.com/getMeasures',
+					uri: 'http://localhost:9002/getMeasures',
 					json: true,
 				});
 
@@ -294,7 +294,7 @@ export class LdsSimilarity implements INodeType {
 				},
 				method: 'POST',
 				body: bodyOptions,
-				uri: 'https://wysiwym-api.herokuapp.com/similarity',
+				uri: 'http://localhost:9001/similarity',
 				json: true,
 			};
 		}
