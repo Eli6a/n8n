@@ -31,7 +31,7 @@ You can then access n8n by opening : [http://localhost:5678](http://localhost:56
 
 ### Lds with Binary Files (.csv)
 
-[Video](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/Similarity_with_ReadBinaryFile.webm)
+[Video](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile.webm)
 
 You can copy the contents of the [Similarity_with_ReadBinaryFile.json](https://github.com/Eli6a/n8n/blob/master/workflow-examples/Similarity_with_ReadBinaryFile.json) and paste it into the workflow.
 
