@@ -31,7 +31,7 @@ You can then access n8n by opening : [http://localhost:5678](http://localhost:56
 
 ### Lds with Binary Files (.csv)
 
-Video : [](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/Similarity_with_ReadBinaryFile.webm)
+[Video](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/Similarity_with_ReadBinaryFile.webm)
 
 You can copy the contents of the [Similarity_with_ReadBinaryFile.json](https://github.com/Eli6a/n8n/blob/master/workflow-examples/Similarity_with_ReadBinaryFile.json) and paste it into the workflow.
 
@@ -47,7 +47,7 @@ For now, you can only keep one comparasion by csv file.
 
 ### Lds with Google Sheets
 
-Video : [](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_DatasetMain.webm)
+[Video](https://raw.githubusercontent.com/Eli6a/n8n/master/workflow-examples/video-examples/LdsSimilarity_DatasetMain.webm)
 
 You can copy the contents of the [LdsSimilarity_DatasetMain.json](https://github.com/Eli6a/n8n/blob/master/workflow-examples/LdsSimilarity_DatasetMain.json) and paste it into the workflow.
 
