@@ -122,7 +122,7 @@ export class LdsMicroMeasure implements INodeType {
 					},
 					method: 'POST',
 					body: {},
-					uri: 'https://wysiwym-api.herokuapp.com/getMicroMeasures',
+					uri: 'http://localhost:9002/getMicroMeasures',
 					json: true,
 				});
 
@@ -187,7 +187,7 @@ export class LdsMicroMeasure implements INodeType {
 					measureType: this.getNodeParameter('measure_atomic', 0) as string,
 				},
 			},
-			uri: 'https://wysiwym-api.herokuapp.com/microMeasure',
+			uri: 'http://localhost:9002/microMeasure',
 			json: true,
 		};
 
