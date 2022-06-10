@@ -22,51 +22,6 @@
       ]
     },
     {
-      "parameters": {
-        "url1": "Paris",
-        "url2": "Madrid",
-        "propertyName": "populationMetro",
-        "measure_atomic": "numeric"
-      },
-      "name": "LdsMicroMeasure",
-      "type": "n8n-nodes-base.ldsMicroMeasure",
-      "typeVersion": 1,
-      "position": [
-        830,
-        400
-      ]
-    },
-    {
-      "parameters": {
-        "url1": "Paris",
-        "url2": "Madrid",
-        "propertyName": "populationUrban",
-        "measure_atomic": "numeric"
-      },
-      "name": "LdsMicroMeasure1",
-      "type": "n8n-nodes-base.ldsMicroMeasure",
-      "typeVersion": 1,
-      "position": [
-        1070,
-        380
-      ]
-    },
-    {
-      "parameters": {
-        "url1": "Paris",
-        "url2": "Madrid",
-        "propertyName": "abstract",
-        "measure_atomic": "normalizedLevenshtein"
-      },
-      "name": "LdsMicroMeasure2",
-      "type": "n8n-nodes-base.ldsMicroMeasure",
-      "typeVersion": 1,
-      "position": [
-        610,
-        510
-      ]
-    },
-    {
       "parameters": {},
       "name": "LdsDataset1",
       "type": "n8n-nodes-base.ldsDataset",
@@ -77,13 +32,43 @@
       ]
     },
     {
+      "parameters": {
+        "url1": "Lisbon",
+        "url2": "Madrid",
+        "propertyName": "abstract",
+        "measure_atomic": "normalizedLevenshtein"
+      },
+      "name": "LdsMicroMeasure",
+      "type": "n8n-nodes-base.ldsMicroMeasure",
+      "typeVersion": 1,
+      "position": [
+        670,
+        510
+      ]
+    },
+    {
+      "parameters": {
+        "url1": "Lisbon",
+        "url2": "Madrid",
+        "propertyName": "populationUrban",
+        "measure_atomic": "numeric"
+      },
+      "name": "LdsMicroMeasure1",
+      "type": "n8n-nodes-base.ldsMicroMeasure",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        400
+      ]
+    },
+    {
       "parameters": {},
       "name": "LdsMicroMeasureAggregation",
       "type": "n8n-nodes-base.ldsMicroMeasureAggregation",
       "typeVersion": 1,
       "position": [
         1280,
-        380
+        400
       ]
     }
   ],
@@ -92,12 +77,12 @@
       "main": [
         [
           {
-            "node": "LdsDataset1",
+            "node": "LdsDataset",
             "type": "main",
             "index": 0
           },
           {
-            "node": "LdsDataset",
+            "node": "LdsDataset1",
             "type": "main",
             "index": 0
           }
@@ -108,12 +93,18 @@
       "main": [
         [
           {
-            "node": "LdsMicroMeasure",
+            "node": "LdsMicroMeasure1",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "LdsDataset1": {
+      "main": [
+        [
           {
-            "node": "LdsMicroMeasure1",
+            "node": "LdsMicroMeasure",
             "type": "main",
             "index": 0
           }
@@ -133,31 +124,9 @@
     },
     "LdsMicroMeasure1": {
       "main": [
-        [
+        [			
           {
             "node": "LdsMicroMeasureAggregation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "LdsMicroMeasure2": {
-      "main": [
-        [
-          {
-            "node": "LdsMicroMeasure",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "LdsDataset1": {
-      "main": [
-        [
-          {
-            "node": "LdsMicroMeasure2",
             "type": "main",
             "index": 0
           }
