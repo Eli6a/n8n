@@ -145,11 +145,6 @@
       "main": [
         [
           {
-            "node": "LdsMicroMeasureAggregation",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "LdsMicroMeasure2",
             "type": "main",
             "index": 1
