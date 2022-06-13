@@ -18,7 +18,7 @@ chmod o+w lds-files/output.csv
 
 Execute the following in the n8n root folder:
 ```bash
-docker build -t n8n-custom -f docker/images/n8n-custom/Dockerfile .
+docker build -t n8n_with_lds -f docker/images/n8n-custom/Dockerfile .
 ```
 
 ## Run n8n and Lds Micro services
@@ -94,3 +94,12 @@ Place yourself in n8n/docker/compose/withLdsMicroServices if it's not already th
 ```bash
 sudo docker-compose up -d
 ```
+
+## Note
+
+If there is changes with Lds Services, you may need to change :
+- the images in [n8n/docker/compose/docker-compose.yml](https://github.com/Eli6a/n8n/blob/master/docker/compose/withLdsMicroServices/docker-compose.yml)
+- the uri to these services in :
+				- [packages/nodes-base/nodes/LdsSimilarity/LdsSimilarity.node.ts ](https://github.com/Eli6a/n8n/blob/master/packages/nodes-base/nodes/LdsSimilarity/LdsSimilarity.node.ts), lines 242 and 297
+				- [packages/nodes-base/nodes/LdsMicroMeasure/LdsMicroMeasure.node.ts](https://github.com/Eli6a/n8n/blob/master/packages/nodes-base/nodes/LdsMicroMeasure/LdsMicroMeasure.node.ts), lines 125 and 190
+
