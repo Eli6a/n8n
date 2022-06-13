@@ -7,6 +7,8 @@ We use n8n to facilitate it use and exploit it results.
 
 You need to install docker and docker-compose to use Lds services. If it is not already done, you can follow the 3 first points of [this tutorial](https://docs.n8n.io/hosting/server-setups/docker-compose/).
 
+You also need to clone this reposotory (or download it) and place yourself into the n8n directory with your terminal.
+
 The command should be used on a Linux terminal
 
 ## Before building the docker image
