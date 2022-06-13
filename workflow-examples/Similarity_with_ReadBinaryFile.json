@@ -39,7 +39,9 @@
       "parameters": {
         "operation": "toFile",
         "fileFormat": "csv",
-        "options": {}
+        "options": {
+				  "fileName": "=output.csv"
+				}
       },
       "name": "Spreadsheet File1",
       "type": "n8n-nodes-base.spreadsheetFile",
