@@ -38,11 +38,12 @@ services:
             - 9002:9002
         network_mode: host
         
-    n8n_custom:
+    n8n_with_lds:
         depends_on:
             - wysiwym_lds_service
             - wysiwym_measures_service          
-        image: n8n-custom
+        image: n8n_with_lds
+        restart: always
         ports:
             - 5678:5678
         network_mode: host
