@@ -1,5 +1,4 @@
 {
-  "name": "Similarity with ReadBinaryFile",
   "nodes": [
     {
       "parameters": {},
@@ -7,8 +6,8 @@
       "type": "n8n-nodes-base.start",
       "typeVersion": 1,
       "position": [
-        230,
-        290
+        -680,
+        380
       ]
     },
     {
@@ -18,10 +17,11 @@
       "name": "Spreadsheet File",
       "type": "n8n-nodes-base.spreadsheetFile",
       "position": [
-        800,
-        290
+        -100,
+        220
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -30,8 +30,8 @@
       "name": "Read Binary File",
       "type": "n8n-nodes-base.readBinaryFile",
       "position": [
-        600,
-        290
+        -280,
+        220
       ],
       "typeVersion": 1
     },
@@ -40,15 +40,15 @@
         "operation": "toFile",
         "fileFormat": "csv",
         "options": {
-				  "fileName": "=output.csv"
-				}
+          "fileName": "=output.csv"
+        }
       },
       "name": "Spreadsheet File1",
       "type": "n8n-nodes-base.spreadsheetFile",
       "typeVersion": 1,
       "position": [
-        1180,
-        230
+        260,
+        420
       ]
     },
     {
@@ -59,8 +59,8 @@
       "type": "n8n-nodes-base.writeBinaryFile",
       "typeVersion": 1,
       "position": [
-        1340,
-        230
+        420,
+        420
       ]
     },
     {
@@ -83,8 +83,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        430,
-        290
+        -460,
+        220
       ]
     },
     {
@@ -93,8 +93,8 @@
       "type": "n8n-nodes-base.ldsDataset",
       "typeVersion": 1,
       "position": [
-        600,
-        90
+        -420,
+        520
       ]
     },
     {
@@ -106,33 +106,54 @@
       "type": "n8n-nodes-base.ldsSimilarity",
       "typeVersion": 1,
       "position": [
-        1000,
-        230
+        -140,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        80,
+        420
       ]
     }
   ],
   "connections": {
-    "Read Binary File": {
+    "Start": {
       "main": [
         [
           {
-            "node": "Spreadsheet File",
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Set Input Output Files Paths",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Start": {
+    "Spreadsheet File": {
       "main": [
         [
           {
-            "node": "Set Input Output Files Paths",
+            "node": "Merge",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Read Binary File": {
+      "main": [
+        [
           {
-            "node": "LdsDataset",
+            "node": "Spreadsheet File",
             "type": "main",
             "index": 0
           }
@@ -172,18 +193,18 @@
         ]
       ]
     },
-    "Spreadsheet File": {
+    "LdsSimilarity": {
       "main": [
         [
           {
-            "node": "LdsSimilarity",
+            "node": "Merge",
             "type": "main",
             "index": 1
           }
         ]
       ]
     },
-    "LdsSimilarity": {
+    "Merge": {
       "main": [
         [
           {
@@ -194,8 +215,5 @@
         ]
       ]
     }
-  },
-  "active": false,
-  "settings": {},
-  "id": "3"
+  }
 }
