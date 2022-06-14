@@ -47,4 +47,7 @@ services:
         ports:
             - 5678:5678
         network_mode: host
+        volumes:
+            # mounting the directory containing input.csv and output.csv
+            - ~/n8n/lds-files:/data/lds-files
 
