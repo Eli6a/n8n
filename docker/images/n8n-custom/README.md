@@ -53,9 +53,9 @@ and when it's done, click on "Back to canvas".
 
 Click on "Execute the workflow"
 
-After the execution, you can download the result by doucble-clicking on the Write Binary File node, then "Download".
-
-For now, you can only keep one comparasion by csv file.
+After the execution, [output.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/output.csv) will be overwritten. If there is data in [input.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/input.csv), output.csv will include them.</br>
+You can also download a copy by double-clicking the Write Binary File, then "Download".</br>
+If you want to run several time the workflow, you should put output.csv as an input file, in the Set Input Output Files Paths node, so it update itself.
 
 ### Lds with Google Sheets
 
