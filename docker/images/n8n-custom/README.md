@@ -43,6 +43,8 @@ You can skip the "Set up owner account".
 
 ### Lds with Binary Files (.csv)
 
+Before running n8n and Lds, you may have to change "~/n8n/lds-files", line 52 of the [docker-compose.yml](https://github.com/Eli6a/n8n/blob/master/docker/compose/withLdsMicroServices/docker-compose.yml), with the path where lds-files is in your computer (depending on where you have clone this n8n repository) 
+
 Video : ![](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile.gif)
 ([mp4 version](https://raw.githubusercontent.com/Eli6a/n8n/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile.mp4))
 
