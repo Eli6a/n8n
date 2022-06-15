@@ -45,10 +45,10 @@ You can skip the "Set up owner account".
 
 Before running n8n and Lds, you may have to change "~/n8n/lds-files", line 52 of the [docker-compose.yml](https://github.com/Eli6a/n8n/blob/master/docker/compose/withLdsMicroServices/docker-compose.yml), with the path where lds-files is in your computer (depending on where you have clone this n8n repository) 
 
-Video : ![](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile.gif)
-([mp4 version](https://raw.githubusercontent.com/Eli6a/n8n/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile.mp4))
+Video : ![](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile_single_comparison.gif)
+([mp4 version](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile_single_comparison.mp4))
 
-You can copy the contents of [Similarity_with_ReadBinaryFile.json](https://github.com/Eli6a/n8n/blob/master/workflow-examples/Similarity_with_ReadBinaryFile.json) and paste it into the workflow.
+You can copy the contents of [Similarity_with_ReadBinaryFile_single_comparison.json](https://github.com/Eli6a/n8n/blob/master/workflow-examples/Similarity_with_ReadBinaryFile_single_comparison.json) and paste it into the workflow.
 
 To change the type of the measure, or the concepts to compare, double-click on the LsdSimilarity node, 
 and when it's done, click on "Back to canvas".
@@ -58,6 +58,8 @@ Click on "Execute the workflow"
 After the execution, [output.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/output.csv) will be overwritten. If there is data in [input.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/input.csv), output.csv will include them.</br>
 You can also download a copy by double-clicking the Write Binary File, then "Download".</br>
 If you want to run several time the workflow, you should put output.csv as an input file, in the Set Input Output Files Paths node, so it update itself.
+
+If you have prepared the input.csv with some concept to compare, you can use [this workflow](https://github.com/Eli6a/n8n/blob/master/workflow-examples/Similarity_with_ReadBinaryFile.json) instead. You would just have to execute the workflow.
 
 ### Lds with Google Sheets
 
