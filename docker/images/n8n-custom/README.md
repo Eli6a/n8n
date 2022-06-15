@@ -11,13 +11,6 @@ You also need to clone this reposotory (or download it) and place yourself into 
 
 The command should be used on a Linux terminal
 
-## Before building the docker image
-
-To use Binary File nodes, you must put the writting permission to [output.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/output.csv), located in the folder lds-files, to be able to use it with the Write Binary File node using this command in the n8n root folder :
-```bash
-chmod o+w lds-files/output.csv
-```
-
 ## Building the docker image
 
 Execute the following in the n8n root folder:
@@ -43,7 +36,15 @@ You can skip the "Set up owner account".
 
 ### Lds with Binary Files (.csv)
 
+#### Before running n8n and Lds Micro services
+
 Before running n8n and Lds, you may have to change "~/n8n/lds-files", line 52 of the [docker-compose.yml](https://github.com/Eli6a/n8n/blob/master/docker/compose/withLdsMicroServices/docker-compose.yml), with the path where lds-files is in your computer (depending on where you have clone this n8n repository) 
+
+You must put the writting permission to [output.csv](https://github.com/Eli6a/n8n/blob/master/lds-files/output.csv), located in the folder lds-files, to be able to use it with the Write Binary File node using this command in the n8n root folder :
+```bash
+chmod o+w lds-files/output.csv
+```
+This command can be use while n8n is running.
 
 Video : ![](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile_single_comparison.gif)
 ([mp4 version](https://github.com/Eli6a/n8n/blob/master/workflow-examples/video-examples/LdsSimilarity_with_ReadBinaryFile_single_comparison.mp4))
