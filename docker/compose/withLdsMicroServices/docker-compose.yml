@@ -29,6 +29,8 @@ services:
         ports: 
             - 9001:9001
         network_mode: host
+        volumes:
+            - ~/n8n/tmp:/app/tmp
         
     wysiwym_measures_service:
         depends_on:
@@ -50,4 +52,4 @@ services:
         volumes:
             # mounting the directory containing input.csv and output.csv
             - ~/n8n/lds-files:/data/lds-files
-
+            - ~/n8n/tmp:/data/tmp
