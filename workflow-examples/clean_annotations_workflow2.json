@@ -1,0 +1,376 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "csv",
+        "options": {
+          "fileName": "=output.csv"
+        }
+      },
+      "name": "Spreadsheet File2",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        -300,
+        440
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "inputFile",
+              "value": "lds-files/clean_annotations/clean_annotations.csv"
+            },
+            {
+              "name": "outputFile",
+              "value": "lds-files/clean_annotations/output.csv"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Input Output Files Paths",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "LdsDataset",
+      "type": "n8n-nodes-base.ldsDataset",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file"
+      },
+      "name": "LdsSimilarity",
+      "type": "n8n-nodes-base.ldsSimilarity",
+      "typeVersion": 1,
+      "position": [
+        100,
+        420
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 2,
+        "options": {}
+      },
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        500,
+        500
+      ],
+      "webhookId": "5f00ccbd-4cff-4d53-8a7e-62ec384bfaf8"
+    },
+    {
+      "parameters": {
+        "filePath": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][0][\"value\"]}}"
+      },
+      "name": "Read Input File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "position": [
+        -420,
+        380
+      ],
+      "typeVersion": 1,
+      "notesInFlow": true,
+      "notes": "Input file"
+    },
+    {
+      "parameters": {
+        "filePath": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][1][\"value\"]}}"
+      },
+      "name": "Read Output File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "position": [
+        20,
+        220
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fileName": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][1][\"value\"]}}"
+      },
+      "name": "Write Output File",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        720,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "command": ">lds-files/clean_annotations/output.csv \\\n&& chmod a+rw lds-files/clean_annotations/output.csv"
+      },
+      "name": "Reset outputFile",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        380
+      ],
+      "notes": "You may need to do `chmod o+w lds-files/clean_annotations` first"
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "csv",
+        "options": {
+          "fileName": "=output.csv"
+        }
+      },
+      "name": "Spreadsheet File2",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "Spreadsheet File1",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        160,
+        220
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    }
+  ],
+  "connections": {
+    "Spreadsheet File2": {
+      "main": [
+        [
+          {
+            "node": "Write Output File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Reset outputFile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input Output Files Paths": {
+      "main": [
+        [
+          {
+            "node": "Read Input File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsDataset": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Output File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LdsSimilarity": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "LdsSimilarity",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LdsDataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Input File": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Output File": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Output File": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reset outputFile": {
+      "main": [
+        [
+          {
+            "node": "Set Input Output Files Paths",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

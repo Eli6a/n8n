@@ -1,0 +1,290 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "aggregateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Aggregation Items",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        60,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "inputFile",
+              "value": "lds-files/clean_annotations/annotations.csv"
+            },
+            {
+              "name": "clean_annotationsFile",
+              "value": "lds-files/clean_annotations/clean_annotations.csv"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Input Output Files Paths",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "filePath": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][0][\"value\"]}}"
+      },
+      "name": "Read Binary File",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "position": [
+        -600,
+        580
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        -460,
+        580
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicates",
+        "compare": "allFieldsExcept",
+        "fieldsToExclude": {
+          "fields": [
+            {
+              "fieldName": "API_Name"
+            },
+            {
+              "fieldName": "="
+            }
+          ]
+        },
+        "options": {
+          "removeOtherFields": true
+        }
+      },
+      "name": "Annotations Keeper",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// array that will be return\nlet leftRightArray = new Array();\n\nlet array = item.Annotations.split(\"'], ['\");\n\narray[0] = array[0].substr(3,array[0].length);\narray[1] = array[1].substr(0,array[1].length-3);\n\nlet left = array[0].split(\"', '\");\nleft = left.sort();\n\nlet right = array[1].split(\"', '\");\nright = right.sort();\n\nleftRightArray.push({left : left, right : right});\n\nreturn leftRightArray;\n"
+      },
+      "name": "Split FunctionItem",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        580
+      ],
+      "notesInFlow": false,
+      "notes": "Split the annotations to two array, left and right"
+    },
+    {
+      "parameters": {
+        "functionCode": "let mergeItems = new Array();\n\nfunction pushCouple(resource1, resource2){\n  mergeItems.push({resource1 : resource1,\n                resource2 : resource2})\n}\n\nfunction findCouple(resource1, resource2){\n  return mergeItems.filter(\n    function(mergeItems) {\n      return (mergeItems.resource1 == resource1 && mergeItems.resource2 == resource2);\n    }\n  );\n}\n\nfor (let itemsIndex = 0; itemsIndex < $node[\"Aggregation Items\"].json[\"0\"].length; itemsIndex++) {\n\n  for (let leftIndex = 0; leftIndex < $node[\"Aggregation Items\"].json[\"0\"][itemsIndex][\"left\"].length; leftIndex++){\n    let left = JSON.stringify($node[\"Aggregation Items\"].json[\"0\"][itemsIndex][\"left\"][leftIndex]);\n    left = JSON.parse(left);\n      for (let rightIndex = 0; rightIndex < $node[\"Aggregation Items\"].json[\"0\"][itemsIndex][\"right\"].length; rightIndex++){\n        let right = JSON.stringify($node[\"Aggregation Items\"].json[\"0\"][itemsIndex][\"right\"][rightIndex]);\n        right = JSON.parse(right);\n\n        let resource1;\n        let resource2;\n\n        // to keep resource1 < resource2\n        if (left <= right) {\n          resource1 = left;\n          resource2 = right;\n        }\n        else {\n          resource1 = right;\n          resource2 = left;\n        } \n\n        let coupleFound = findCouple(resource1, resource2);\n\n        if (coupleFound.length == 0){        \n          pushCouple(resource1, resource2);        \n        }\n      }    \n  }\n}\n\nreturn mergeItems;"
+      },
+      "name": "Couple Function",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        240,
+        580
+      ],
+      "notes": "Make the couple of concepts and avoid having double"
+    },
+    {
+      "parameters": {
+        "fileName": "={{$node[\"Set Input Output Files Paths\"].parameter[\"values\"][\"string\"][1][\"value\"]}}"
+      },
+      "name": "Write Binary File",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [
+        560,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "csv",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "name": "Spreadsheet File1",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        400,
+        580
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "command": ">lds-files/clean_annotations/clean_annotations.csv \\\n&& chmod a+rw lds-files/clean_annotations/clean_annotations.csv"
+      },
+      "name": "Reset clean_annotationsFile",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        360
+      ],
+      "notes": "You may need to do `chmod o+w lds-files/clean_annotations` first"
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set Input Output Files Paths",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregation Items": {
+      "main": [
+        [
+          {
+            "node": "Couple Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input Output Files Paths": {
+      "main": [
+        [
+          {
+            "node": "Reset clean_annotationsFile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Binary File": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Annotations Keeper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Annotations Keeper": {
+      "main": [
+        [
+          {
+            "node": "Split FunctionItem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split FunctionItem": {
+      "main": [
+        [
+          {
+            "node": "Aggregation Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Couple Function": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File1": {
+      "main": [
+        [
+          {
+            "node": "Write Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reset clean_annotationsFile": {
+      "main": [
+        [
+          {
+            "node": "Read Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
