@@ -1,6 +1,14 @@
 version: '3'
 services:
-    wysiwym_eureka:
+    docker-python-ml:
+        image: vykthor/docker-python-ml
+        ports: 
+            - 5000:5000
+        network_mode: host
+        
+    wysiwym_eureka:  
+        depends_on:
+            - docker-python-ml
         image: vykthor/wysiwym_eureka
         ports: 
             - 9102:9102
