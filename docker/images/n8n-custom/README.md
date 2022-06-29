@@ -1,7 +1,12 @@
 # Lds
 
-Lds (Linked Data Similarity) is a Java Library that make similarity calculation between concepts.</br>
-We use n8n to facilitate it use and exploit it results.
+[Lds](https://github.com/FouadKom/lds) (Linked Data Similarity) is a Java Library that make similarity calculation between concepts.</br>
+We use n8n to facilitate it use and exploit it results. 4 nodes are related to Lds :
+
+- LdsSimilarity: calculate the semantic similarity between one or more pairs of concepts.
+- LdsDataset: configure the dataset (e.g. dbpedia).
+- LdsMicroMeasure: calculate the similarity between two properties of one pair of concepts.
+- LdsMicroMeasureAggregation: provides 3 types of aggregation function to apply on the results of the LdsMicroMeasure node (average, min, max).
 
 # Lds usage with custom nodes and docker
 
