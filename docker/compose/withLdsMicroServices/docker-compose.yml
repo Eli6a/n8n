@@ -5,8 +5,8 @@ services:
         ports: 
             - 5000:5000
         network_mode: host
-        
-    wysiwym_eureka:  
+
+    wysiwym_eureka:
         depends_on:
             - docker-python-ml
         image: vykthor/wysiwym_eureka
